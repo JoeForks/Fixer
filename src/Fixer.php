@@ -16,6 +16,7 @@
 
 namespace GrahamCampbell\Fixer;
 
+use GrahamCampbell\Fixer\Models\Repo;
 use GrahamCampbell\Fixer\Zip\Downloader;
 
 /**
@@ -70,15 +71,17 @@ class Fixer
      * @param string $repo
      * @param string $commit
      *
-     * @return \GrahamCampbell\Fixer\Models\Commit
+     * @return \GrahamCampbell\Fixer\Models\Repo
      */
     public function analyse($repo, $commit)
     {
         $this->setup($repo, $commit);
 
-        $model = $this->analyser->analyse($repo, $commit);
+        $data = $this->analyser->analyse($repo, $commit);
 
-        // $model->push();
+        $model = Repo::firstOrCreate(['id' => $repo, 'time' => $data['time'], 'memory' => $data['memory']]);
+
+        $model->commits->create(['id' => $commit])->files()->createMany($data['files']);
 
         $this->tearDown($commit);
 

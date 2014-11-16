@@ -16,7 +16,6 @@
 
 namespace GrahamCampbell\Fixer;
 
-use GrahamCampbell\Fixer\Models\Commit;
 use Symfony\CS\Config\Config;
 use Symfony\CS\ConfigurationResolver;
 use Symfony\CS\ErrorsManager;
@@ -109,7 +108,7 @@ class Analyser
      * @param string $repo
      * @param string $commit
      *
-     * @return \GrahamCampbell\Fixer\Models\Commit
+     * @return array
      */
     public function analyse($repo, $commit)
     {
@@ -136,15 +135,11 @@ class Analyser
             $files[$name]['diff'] = $result['diff'];
         }
 
-        $data = [
-            'repo'   => $repo,
-            'commit' => $commit,
-            'files'  => $files,
+        return [
+            'time'   => round($fixEvent->getDuration() / 1000, 3),
             'memory' => round($fixEvent->getMemory() / 1024 / 1024, 3),
-            'time'   => ['total' => round($fixEvent->getDuration() / 1000, 3)],
+            'files'  => $files,
         ];
-
-        return new Commit($data);
     }
 
     protected function getConfig($commit)

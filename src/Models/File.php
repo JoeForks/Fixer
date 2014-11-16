@@ -16,41 +16,31 @@
 
 namespace GrahamCampbell\Fixer\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\File;
 
 /**
- * This is the commit model class.
+ * This is the file model class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class Commit extends Model
+class File extends Model
 {
     /**
      * A list of methods protected from mass assignment.
      *
      * @var array
      */
-    protected $guarded = ['_token', '_method'];
+    protected $guarded = ['_token', '_method', 'id'];
 
     /**
-     * Get the repo relation.
+     * Get the commit relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function repo()
+    public function post()
     {
-        return $this->belongsTo(Repo::class);
-    }
-
-    /**
-     * Get the files relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function files()
-    {
-        return $this->hasMany(File::class);
+        return $this->belongsTo(Commit::class);
     }
 }

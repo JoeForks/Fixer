@@ -19,13 +19,13 @@ namespace GrahamCampbell\Fixer\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * This is the commit model class.
+ * This is the repo model class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class Commit extends Model
+class Repo extends Model
 {
     /**
      * A list of methods protected from mass assignment.
@@ -35,22 +35,12 @@ class Commit extends Model
     protected $guarded = ['_token', '_method'];
 
     /**
-     * Get the repo relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function repo()
-    {
-        return $this->belongsTo(Repo::class);
-    }
-
-    /**
-     * Get the files relation.
+     * Get the commits relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function files()
+    public function commits()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(Commit::class);
     }
 }

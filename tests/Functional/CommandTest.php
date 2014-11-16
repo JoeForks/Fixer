@@ -16,7 +16,7 @@
 
 namespace GrahamCampbell\Tests\Fixer\Functional;
 
-use GrahamCampbell\Tests\Credentials\AbstractTestCase;
+use GrahamCampbell\Tests\Fixer\AbstractTestCase;
 use Illuminate\Contracts\Foundation\Application;
 
 /**

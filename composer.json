@@ -1,0 +1,40 @@
+{
+    "name": "graham-campbell/fixer",
+    "description": "Fixer Is A Code Style Report Builder",
+    "keywords": ["laravel", "framework", "fixer", "cs", "api", "fixer report", "report", "Fixer", "Laravel Fixer", "Laravel-Fixer", "Graham Campbell", "GrahamCampbell"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Graham Campbell",
+            "email": "graham@mineuk.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/contracts": "~5.0",
+        "illuminate/support": "~5.0",
+        "fabpot/php-cs-fixer": "1.1.*",
+        "guzzlehttp/guzzle": "~5.0",
+        "guzzlehttp/retry-subscriber": "~2.0"
+    },
+    "require-dev": {
+        "graham-campbell/testbench": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GrahamCampbell\\Fixer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GrahamCampbell\\Tests\\Fixer\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

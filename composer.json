@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "illuminate/contracts": "~5.0",
         "illuminate/support": "~5.0",
         "graham-campbell/core": "~2.0",

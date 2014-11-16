@@ -16,7 +16,7 @@
 
 namespace GrahamCampbell\Fixer\Models;
 
-use Illuminate\Database\Eloquent\File;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * This is the file model class.

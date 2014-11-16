@@ -16,6 +16,7 @@
 
 namespace GrahamCampbell\Fixer;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Symfony\CS\Fixer as SymfonyFixer;
 
@@ -43,6 +44,24 @@ class FixerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('graham-campbell/fixer', 'graham-campbell/fixer', __DIR__);
+
+        if ($this->app->config['graham-campbell/core::commands']) {
+            $this->setupCommandSubscriber($this->app);
+        }
+    }
+
+    /**
+     * Setup the command subscriber.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return void
+     */
+    protected function setupCommandSubscriber(Application $app)
+    {
+        $subscriber = $app->make(Subscribers\CommandSubscriber::class);
+
+        $app['events']->subscribe($subscriber);
     }
 
     /**

@@ -14,40 +14,45 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Fixer\Models;
+namespace GrahamCampbell\Fixer\Subscribers;
 
-use Illuminate\Database\Eloquent\File;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Events\Dispatcher;
 
 /**
- * This is the file model class.
+ * This is the command subscriber class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class File extends Model
+class CommandSubscriber
 {
     /**
-     * A list of methods protected from mass assignment.
+     * Register the listeners for the subscriber.
      *
-     * @var array
-     */
-    protected $guarded = ['_token', '_method', 'id'];
-
-    /**
-     * Are timestamps enabled?
+     * @param \Illuminate\Contracts\Events\Dispatcher $events
      *
-     * @var bool
+     * @return void
      */
-    public $timestamps = false;
-
-    /**
-     * Get the commit relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function post()
+    public function subscribe(Dispatcher $events)
     {
-        return $this->belongsTo(Commit::class);
+        $events->listen(
+            'command.runmigrations',
+            'GrahamCampbell\Fixer\Subscribers\CommandSubscriber@onRunMigrations',
+            8
+        );
+    }
+
+    /**
+     * Handle a command.runmigrations event.
+     *
+     * @param \Illuminate\Console\Command $command
+     *
+     * @return void
+     */
+    public function onRunMigrations(Command $command)
+    {
+        $command->call('migrate', ['--package' => 'graham-campbell/fixer', '--force' => true]);
     }
 }

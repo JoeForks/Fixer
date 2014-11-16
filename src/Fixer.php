@@ -71,21 +71,19 @@ class Fixer
      * @param string $repo
      * @param string $commit
      *
-     * @return \GrahamCampbell\Fixer\Models\Repo
+     * @return \GrahamCampbell\Fixer\Models\Commit
      */
     public function analyse($repo, $commit)
     {
         $this->setup($repo, $commit);
-
         $data = $this->analyser->analyse($repo, $commit);
-
-        $model = Repo::firstOrCreate(['id' => $repo, 'time' => $data['time'], 'memory' => $data['memory']]);
-
-        $model->commits->create(['id' => $commit])->files()->createMany($data['files']);
-
         $this->tearDown($commit);
 
-        return $model;
+        $repo = Repo::firstOrCreate(['id' => sha1($repo), 'name' => $repo]);
+        $commit = $repo->commits->create(['id' => $commit, 'time' => $data['time'], 'memory' => $data['memory']]);
+        $commit->files()->createMany($data['files']);
+
+        return $commit;
     }
 
     /**

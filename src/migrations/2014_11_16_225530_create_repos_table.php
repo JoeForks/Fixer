@@ -14,40 +14,40 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Fixer\Models;
-
-use Illuminate\Database\Eloquent\File;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
- * This is the file model class.
+ * This is the create repos table migration class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class File extends Model
+class CreateReposTable extends Migration
 {
     /**
-     * A list of methods protected from mass assignment.
+     * Run the migrations.
      *
-     * @var array
+     * @return void
      */
-    protected $guarded = ['_token', '_method', 'id'];
-
-    /**
-     * Are timestamps enabled?
-     *
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
-     * Get the commit relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function post()
+    public function up()
     {
-        return $this->belongsTo(Commit::class);
+        Schema::create('repos', function (Blueprint $table) {
+            $table->char('id', 40)->primary();
+            $table->string('name', 128)->unique();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('revisions');
     }
 }

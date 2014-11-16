@@ -38,6 +38,14 @@ class Downloader
      */
     public function download($file, $path)
     {
+        if (!is_dir(dirname($path))) {
+            @mkdir(dirname($path));
+        }
+
+        if (is_file($path)) {
+            @unlink($file);
+        }
+
         $this->client()->get($file, ['save_to' => $path]);
 
         return new Archive($path);

@@ -21,9 +21,11 @@ use Symfony\CS\Config\Config;
 use Symfony\CS\ErrorsManager;
 use Symfony\CS\Finder\DefaultFinder;
 use Symfony\CS\Fixer;
+use Symfony\CS\FixerInterface;
 use Symfony\CS\LintManager;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Stopwatch\Stopwatch;
+use Symfony\CS\ConfigurationResolver;
 
 /**
  * This is the analyser class.
@@ -117,31 +119,30 @@ class Analyser
 
         $files = [];
 
-        foreach ($changed as $file => $result) {
-            $files[] = ['name'     => $file, 'appliedFixers'     => $result['appliedFixers'], 'diff'     => $result['diff']];
-        }
-
         $fixEvent = $this->stopwatch->getEvent('fixFiles');
-
-        $data = [
-            'files'  => $files,
-            'memory' => round($fixEvent->getMemory() / 1024 / 1024, 3),
-            'time'   => [
-                'total' => round($fixEvent->getDuration() / 1000, 3),
-            ],
-        ];
-
-        $fileTime = [];
 
         foreach ($this->stopwatch->getSectionEvents('fixFile') as $file => $event) {
             if ('__section__' === $file) {
                 continue;
             }
 
-            $fileTime[$file] = round($event->getDuration() / 1000, 3);
+            $name = substr($file, strrpos($file, $commit) + strlen($commit) + 1);
+
+            $files[$name]['time'] = round($event->getDuration() / 1000, 3);
         }
 
-        $data['time']['files'] = $fileTime;
+        foreach ($changed as $file => $result) {
+            $name = substr($file, strrpos($file, $commit) + strlen($commit) + 1);
+            $files[$name]['diff'] = $result['diff'];
+        }
+
+        $data = [
+            'repo'   => $repo,
+            'commit' => $commit,
+            'files'  => $files,
+            'memory' => round($fixEvent->getMemory() / 1024 / 1024, 3),
+            'time'   => ['total' => round($fixEvent->getDuration() / 1000, 3)],
+        ];
 
         return new Commit($data);
     }
@@ -158,7 +159,15 @@ class Analyser
             'short_array_syntax',
         ];
 
-        return Config::create()->fixers($fixers)->setDir($path)
-            ->finder(DefaultFinder::create()->notName('*.blade.php')->in($path));
+        $config = Config::create()->level(FixerInterface::SYMFONY_LEVEL)->fixers($fixers);
+        $config->finder(DefaultFinder::create()->notName('*.blade.php')->in($path));
+        $config->setDir($path);
+
+        $resolver = new ConfigurationResolver();
+        $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
+
+        $config->fixers($resolver->getFixers());
+
+        return $config;
     }
 }

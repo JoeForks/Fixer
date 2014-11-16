@@ -76,7 +76,7 @@ class Fixer
     {
         $this->setup($repo, $commit);
 
-        $model = $this->analyser->analyse($commit);
+        $model = $this->analyser->analyse($repo, $commit);
 
         // $model->push();
 
@@ -97,7 +97,7 @@ class Fixer
     {
         $path = $this->path.'/'.$commit;
 
-        $archive = $this->downloader->download($repo.'/'.$commit, $path.'.zip');
+        $archive = $this->downloader->download($repo.'/zip/'.$commit, $path.'.zip');
 
         $archive->extract($path);
         $archive->delete();

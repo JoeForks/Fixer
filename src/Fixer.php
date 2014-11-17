@@ -45,17 +45,26 @@ class Fixer
     protected $path;
 
     /**
+     * The gitlib options.
+     *
+     * @var array
+     */
+    protected $options;
+
+    /**
      * Create a fixer instance.
      *
      * @param \GrahamCampbell\Fixer\Analysers\Analyser $analyser
      * @param string                                   $path
+     * @param array                                    $options
      *
      * @return void
      */
-    public function __construct(Analyser $analyser, $path)
+    public function __construct(Analyser $analyser, $path, array $options)
     {
         $this->analyser = $analyser;
         $this->path = $path;
+        $this->options = $options;
     }
 
     /**
@@ -89,10 +98,10 @@ class Fixer
      */
     protected function setup($repo, $commit)
     {
-        $repo = new Repository($repo, $this->path);
+        $repo = new Repository($repo, $this->path, $this->options);
 
         if (!$repo->exists()) {
-            $repo->clone();
+            $repo->get();
         }
 
         $repo->fetch();

@@ -37,7 +37,19 @@ You can register the Fixer facade in the `aliases` key of your `config/app.php` 
 
 ## Configuration
 
-Laravel Fixer requires no configuration. Just follow the simple install instructions and go!
+Laravel Fixer supports optional configuration.
+
+To get started, first publish the package config file:
+
+```bash
+$ php artisan publish:config graham-campbell/fixer
+```
+
+There is one config option:
+
+##### Gitlib Options
+
+This option (`'options'`) defines the options to pass to gitlib. This might include setting your git executable location. Feel free to check out the [documentation](http://gitonomy.com/doc/gitlib/master/api/repository/#repository-options) for this. The default value for this setting is `[]`.
 
 
 ## Usage

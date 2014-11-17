@@ -18,7 +18,7 @@ namespace GrahamCampbell\Fixer\GitHub;
 
 use Exception;
 use Gitonomy\Git\Admin as Git;
-use Gitonomy\Git\Repository\GitRepo;
+use Gitonomy\Git\Repository as GitRepo;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -45,6 +45,13 @@ class Repository
     protected $url;
 
     /**
+     * The gitlib options.
+     *
+     * @var array
+     */
+    protected $options;
+
+    /**
      * The symfony filesystem instance.
      *
      * @var \Symfony\Component\Filesystem\Filesystem
@@ -56,13 +63,15 @@ class Repository
      *
      * @param string $repo
      * @param string $path
+     * @param array  $options
      *
      * @return void
      */
-    public function __construct($repo, $path)
+    public function __construct($repo, $path, array $options = [])
     {
         $this->path = $path.'/'.sha1($repo);
         $this->url = 'https://github.com/'.$repo.'.git';
+        $this->options = $options;
         $this->filesystem = new Filesystem();
     }
 
@@ -73,7 +82,7 @@ class Repository
      */
     public function exists()
     {
-        return $this->filesystem->exists($this->path);
+        return $this->filesystem->exists($this->path.'/.git');
     }
 
     /**
@@ -81,13 +90,15 @@ class Repository
      *
      * @return void
      */
-    public function clone()
+    public function get()
     {
         if ($this->exists()) {
-            throw new Exception('You cannot clone a repo that already exists on the filesystem.')
+            throw new Exception('You cannot clone a repo that already exists on the filesystem.');
         }
 
-        $this->repo = Git::cloneTo($this->path, $this->url);
+        $this->filesystem->mkdir($this->path);
+
+        $this->repo = Git::cloneTo($this->path, $this->url, false, $this->options);
     }
 
     /**
@@ -105,7 +116,7 @@ class Repository
             throw new Exception('You need to clone the repo before you attempt to use it.');
         }
 
-        return $this->repo = new GitRepo($this->path);
+        return $this->repo = new GitRepo($this->path, $this->options);
     }
 
     /**

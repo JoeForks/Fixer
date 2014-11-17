@@ -72,7 +72,6 @@ class FixerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerAnalyser();
-        $this->registerDownloader();
         $this->registerFixer();
     }
 
@@ -95,20 +94,6 @@ class FixerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the downloader class.
-     *
-     * @return void
-     */
-    protected function registerDownloader()
-    {
-        $this->app->singleton('fixer.downloader', function () {
-            return new Zip\Downloader();
-        });
-
-        $this->app->alias('fixer.downloader', 'GrahamCampbell\Fixer\Zip\Downloader');
-    }
-
-    /**
      * Register the fixer class.
      *
      * @return void
@@ -117,10 +102,10 @@ class FixerServiceProvider extends ServiceProvider
     {
         $this->app->singleton('fixer', function ($app) {
             $analyser = $app['fixer.analyser'];
-            $downloader = $app['fixer.downloader'];
             $path = $app['path.storage'].'/fixer';
+            $options = $app['config']['graham-campbell/fixer::options'];
 
-            return new Fixer($analyser, $downloader, $path);
+            return new Fixer($analyser, $path, $options);
         });
 
         $this->app->alias('fixer', 'GrahamCampbell\Fixer\Fixer');
@@ -136,7 +121,6 @@ class FixerServiceProvider extends ServiceProvider
         return [
             'fixer',
             'fixer.analyser',
-            'fixer.downloader',
         ];
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Fixer;
+namespace GrahamCampbell\Fixer\Analysers;
 
 use Symfony\CS\Config\Config;
 use Symfony\CS\ConfigurationResolver;
@@ -27,13 +27,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
- * This is the analyser class.
+ * This is the code style analyser class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class Analyser
+class CodeStyle
 {
     /**
      * The fixer instance.
@@ -105,12 +105,11 @@ class Analyser
     /**
      * Analyse the commit.
      *
-     * @param string $repo
      * @param string $commit
      *
      * @return array
      */
-    public function analyse($repo, $commit)
+    public function analyse($commit)
     {
         $this->stopwatch->start('fixFiles');
         $changed = $this->fixer->fix($this->getConfig($commit), true, true);
@@ -132,7 +131,6 @@ class Analyser
 
         foreach ($changed as $file => $result) {
             $name = substr($file, strrpos($file, $commit) + strlen($commit) + 1);
-            $files[$name]['diff'] = $result['diff'];
         }
 
         return [

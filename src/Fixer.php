@@ -16,8 +16,10 @@
 
 namespace GrahamCampbell\Fixer;
 
+use GrahamCampbell\Fixer\Analysers\Analyser;
+use GrahamCampbell\Fixer\GitHub\Repository;
 use GrahamCampbell\Fixer\Models\Repo;
-use GrahamCampbell\Fixer\Zip\Downloader;
+
 
 /**
  * This is the fixer class.
@@ -31,7 +33,7 @@ class Fixer
     /**
      * The analyser instance.
      *
-     * @var \GrahamCampbell\Fixer\Analyser
+     * @var \GrahamCampbell\Fixer\Analysers\Analyser
      */
     protected $analyser;
 
@@ -52,16 +54,14 @@ class Fixer
     /**
      * Create a fixer instance.
      *
-     * @param \GrahamCampbell\Fixer\Analyser       $analyser
-     * @param \GrahamCampbell\Fixer\Zip\Downloader $downloader
-     * @param string                               $path
+     * @param \GrahamCampbell\Fixer\Analysers\Analyser $analyser
+     * @param string                                   $path
      *
      * @return void
      */
-    public function __construct(Analyser $analyser, Downloader $downloader, $path)
+    public function __construct(Analyser $analyser, $path)
     {
         $this->analyser = $analyser;
-        $this->downloader = $downloader;
         $this->path = $path;
     }
 
@@ -76,8 +76,8 @@ class Fixer
     public function analyse($repo, $commit)
     {
         $this->setup($repo, $commit);
+
         $data = $this->analyser->analyse($repo, $commit);
-        $this->tearDown($commit);
 
         $repo = Repo::firstOrCreate(['id' => sha1($repo), 'name' => $repo]);
         $commit = $repo->commits->create(['id' => $commit, 'time' => $data['time'], 'memory' => $data['memory']]);
@@ -96,23 +96,14 @@ class Fixer
      */
     protected function setup($repo, $commit)
     {
-        $path = $this->path.'/'.$commit;
+        $repo = new Repository($repo, $this->path);
 
-        $archive = $this->downloader->download($repo.'/zip/'.$commit, $path.'.zip');
+        if (!$repo->exists()) {
+            $repo->clone();
+        }
 
-        $archive->extract($path);
-        $archive->delete();
-    }
+        $repo->fetch();
 
-    /**
-     * Cleanup after analysis is complete.
-     *
-     * @param string $commit
-     *
-     * @return void
-     */
-    protected function tearDown($commit)
-    {
-        @unlink($this->path.'/'.$commit);
+        $repo->reset($commit);
     }
 }

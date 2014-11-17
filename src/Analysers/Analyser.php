@@ -14,31 +14,47 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Fixer\Zip;
+namespace GrahamCampbell\Fixer\Analysers;
 
 /**
- * This is the deleting exception class.
+ * This is the analyser class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class DeletingException extends ArchiveException
+class Analyser
 {
     /**
-     * Create a deleting exception instance.
+     * The code style analyser instance.
      *
-     * @param string      $path
-     * @param string|null $message
+     * @var \GrahamCampbell\Fixer\Analysers\CodeStyle
+     */
+    protected $cs;
+
+    /**
+     * Create an analyser instance.
+     *
+     * @param \GrahamCampbell\Fixer\Analysers\CodeStyle $cs
+     * @param string                                    $path
      *
      * @return void
      */
-    public function __construct($path, $message = null)
+    public function __construct(CodeStyle $cs, $path)
     {
-        if (!$message) {
-            $message = "The archive located at '$path' could not be deleted.";
-        }
+        $this->cs = $cs;
+        $this->path = $path;
+    }
 
-        parent::__construct($path, $message);
+    /**
+     * Analyse the commit.
+     *
+     * @param string $commit
+     *
+     * @return array
+     */
+    public function analyse($commit)
+    {
+        $data = $this->cs->analyse($commit);
     }
 }

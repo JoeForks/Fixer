@@ -48,6 +48,6 @@ class CreateReposTable extends Migration
      */
     public function down()
     {
-        Schema::drop('revisions');
+        Schema::drop('repos');
     }
 }

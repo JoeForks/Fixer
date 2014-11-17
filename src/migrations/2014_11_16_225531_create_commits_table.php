@@ -39,6 +39,7 @@ class CreateCommitsTable extends Migration
             $table->char('repo', 40);
             $table->float('time');
             $table->float('memory');
+            $table->longText('diff');
             $table->timestamps();
         });
     }
@@ -50,6 +51,6 @@ class CreateCommitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('revisions');
+        Schema::drop('commits');
     }
 }

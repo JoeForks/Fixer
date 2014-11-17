@@ -39,6 +39,7 @@ class CreateFilesTable extends Migration
             $table->char('commit', 40);
             $table->string('name', 1024);
             $table->float('time');
+            $table->longText('changes');
         });
     }
 
@@ -49,6 +50,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('revisions');
+        Schema::drop('files');
     }
 }

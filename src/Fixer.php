@@ -38,13 +38,6 @@ class Fixer
     protected $analyser;
 
     /**
-     * The downloader instance.
-     *
-     * @var \GrahamCampbell\Fixer\Zip\Downloader
-     */
-    protected $downloader;
-
-    /**
      * The storage path.
      *
      * @var string

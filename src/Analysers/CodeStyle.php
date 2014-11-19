@@ -123,7 +123,7 @@ class CodeStyle
                 continue;
             }
 
-            $files[] = ['name' => $file, 'time' =>round($event->getDuration() / 1000, 3)];
+            $files[] = ['name' => $file, 'time' => round($event->getDuration() / 1000, 3)];
         }
 
         return [

@@ -36,7 +36,7 @@ class CreateCommitsTable extends Migration
     {
         Schema::create('commits', function (Blueprint $table) {
             $table->char('id', 40)->primary();
-            $table->char('repo', 40);
+            $table->char('repo_id', 40);
             $table->float('time');
             $table->float('memory');
             $table->longText('diff');

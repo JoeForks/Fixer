@@ -59,6 +59,13 @@ class Repository
     protected $filesystem;
 
     /**
+     * The gitlib repository instance.
+     *
+     * @var \Gitonomy\Git\Repository
+     */
+    protected $repo;
+
+    /**
      * Create a new github repository instance.
      *
      * @param string $repo

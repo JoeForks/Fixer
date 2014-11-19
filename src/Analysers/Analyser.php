@@ -36,25 +36,25 @@ class Analyser
      * Create an analyser instance.
      *
      * @param \GrahamCampbell\Fixer\Analysers\CodeStyle $cs
-     * @param string                                    $path
      *
      * @return void
      */
-    public function __construct(CodeStyle $cs, $path)
+    public function __construct(CodeStyle $cs)
     {
         $this->cs = $cs;
-        $this->path = $path;
     }
 
     /**
      * Analyse the commit.
      *
-     * @param string $commit
+     * @param string $path
      *
      * @return array
      */
-    public function analyse($commit)
+    public function analyse($path)
     {
-        $data = $this->cs->analyse($commit);
+        $data = $this->cs->analyse($path);
+
+        return $data;
     }
 }

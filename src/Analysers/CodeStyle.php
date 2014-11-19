@@ -85,10 +85,9 @@ class CodeStyle
      *
      * @return void
      */
-    public function __construct(Fixer $fixer, $path)
+    public function __construct(Fixer $fixer)
     {
         $this->fixer = $fixer;
-        $this->path = $path;
 
         $this->eventDispatcher = new EventDispatcher();
         $this->stopwatch = new Stopwatch();
@@ -103,16 +102,16 @@ class CodeStyle
     }
 
     /**
-     * Analyse the commit.
+     * Analyse the project.
      *
-     * @param string $commit
+     * @param string $path
      *
      * @return array
      */
-    public function analyse($commit)
+    public function analyse($path)
     {
         $this->stopwatch->start('fixFiles');
-        $changed = $this->fixer->fix($this->getConfig($commit), true, true);
+        $changed = $this->fixer->fix($this->getConfig($path), true);
         $this->stopwatch->stop('fixFiles');
 
         $files = [];
@@ -124,13 +123,7 @@ class CodeStyle
                 continue;
             }
 
-            $name = substr($file, strrpos($file, $commit) + strlen($commit) + 1);
-
-            $files[$name]['time'] = round($event->getDuration() / 1000, 3);
-        }
-
-        foreach ($changed as $file => $result) {
-            $name = substr($file, strrpos($file, $commit) + strlen($commit) + 1);
+            $files[] = ['name' => $file, 'time' =>round($event->getDuration() / 1000, 3)];
         }
 
         return [
@@ -140,10 +133,15 @@ class CodeStyle
         ];
     }
 
-    protected function getConfig($commit)
+    /**
+     * Get the project configuration.
+     *
+     * @param string $path
+     *
+     * @return \Symfony\CS\Config\Config
+     */
+    protected function getConfig($path)
     {
-        $path = $this->path.'/'.$commit;
-
         $fixers = [
             '-yoda_conditions',
             'align_double_arrow',

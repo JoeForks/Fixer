@@ -36,7 +36,7 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('commit', 40);
+            $table->char('commit_id', 40);
             $table->string('name', 1024);
             $table->float('time');
             $table->longText('changes');

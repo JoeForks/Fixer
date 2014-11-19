@@ -84,10 +84,9 @@ class FixerServiceProvider extends ServiceProvider
     {
         $this->app->singleton('fixer.analyser', function ($app) {
             $fixer = new SymfonyFixer();
-            $path = $app['path.storage'].'/fixer';
-            $cs = new Analysers\CodeStyle($fixer, $path);
+            $cs = new Analysers\CodeStyle($fixer);
 
-            return new Analysers\Analyser($cs, $path);
+            return new Analysers\Analyser($cs);
         });
 
         $this->app->alias('fixer.analyser', 'GrahamCampbell\Fixer\Analysers\Analyser');

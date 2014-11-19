@@ -20,7 +20,6 @@ use GrahamCampbell\Fixer\Analysers\Analyser;
 use GrahamCampbell\Fixer\GitHub\Repository;
 use GrahamCampbell\Fixer\Models\Repo;
 
-
 /**
  * This is the fixer class.
  *

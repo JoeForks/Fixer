@@ -16,9 +16,7 @@
         "graham-campbell/core": "~2.0",
         "symfony/filesystem": "~2.3",
         "fabpot/php-cs-fixer": "1.1.*",
-        "gitonomy/gitlib": "dev-master",
-        "guzzlehttp/guzzle": "~5.0",
-        "guzzlehttp/retry-subscriber": "~2.0"
+        "gitonomy/gitlib": "dev-master"
     },
     "require-dev": {
         "graham-campbell/testbench": "~2.0"

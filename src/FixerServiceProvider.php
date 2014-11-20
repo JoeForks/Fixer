@@ -101,7 +101,7 @@ class FixerServiceProvider extends ServiceProvider
     {
         $this->app->singleton('fixer', function ($app) {
             $analyser = $app['fixer.analyser'];
-            $path = $app['path.storage'].'/fixer';
+            $path = $app['path.storage'].'/app/fixer';
             $options = $app['config']['graham-campbell/fixer::options'];
 
             return new Fixer($analyser, $path, $options);

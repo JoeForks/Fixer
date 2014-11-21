@@ -74,25 +74,36 @@ class Fixer
      */
     public function analyse($repo, $commit)
     {
-        $this->setup($repo, $commit);
+        $repo = $this->getRepo($repo);
 
-        $path = $this->path.'/'.sha1($repo);
+        $this->setup($repo);
 
-        return $this->analyser->analyse($path);
+        $data = $this->analyser->analyse($repo->path());
+
+        return $this->buildReport($data, $repo);
+    }
+
+    /**
+     * Get the github repo instance.
+     *
+     * @param string $repo
+     *
+     * @return \GrahamCampbell\Fixer\GitHub\Repository
+     */
+    protected function getRepo($repo)
+    {
+        return new Repository($repo, $this->path, $this->options);
     }
 
     /**
      * Set things up for analysis.
      *
-     * @param string $repo
-     * @param string $commit
+     * @param \GrahamCampbell\Fixer\GitHub\Repository $repo
      *
      * @return void
      */
-    protected function setup($repo, $commit)
+    protected function setup(Repository $repo)
     {
-        $repo = new Repository($repo, $this->path, $this->options);
-
         if (!$repo->exists()) {
             $repo->get();
         }
@@ -100,5 +111,18 @@ class Fixer
         $repo->fetch();
 
         $repo->reset($commit);
+    }
+
+    /**
+     * Build the fixer report.
+     *
+     * @param array                                   $data
+     * @param \GrahamCampbell\Fixer\GitHub\Repository $repo
+     *
+     * @return \GrahamCampbell\Fixer\Report
+     */
+    protected function buildReport(array $data, Repository $repo)
+    {
+        return new Report($repo->diff(), $data['time'], $data['memory']);
     }
 }

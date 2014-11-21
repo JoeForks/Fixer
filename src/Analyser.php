@@ -111,26 +111,13 @@ class Analyser
     public function analyse($path)
     {
         $this->stopwatch->start('fixFiles');
-        $changed = $this->fixer->fix($this->getConfig($path), true);
+        $this->fixer->fix($this->getConfig($path));
         $this->stopwatch->stop('fixFiles');
 
-        $files = [];
+        $time = round($fixEvent->getDuration() / 1000, 3);
+        $memory = round($fixEvent->getMemory() / 1024 / 1024, 3);
 
-        $fixEvent = $this->stopwatch->getEvent('fixFiles');
-
-        foreach ($this->stopwatch->getSectionEvents('fixFile') as $file => $event) {
-            if ('__section__' === $file) {
-                continue;
-            }
-
-            $files[] = ['name' => $file, 'time' => round($event->getDuration() / 1000, 3)];
-        }
-
-        return [
-            'time'   => round($fixEvent->getDuration() / 1000, 3),
-            'memory' => round($fixEvent->getMemory() / 1024 / 1024, 3),
-            'files'  => $files,
-        ];
+        return compact('time', 'memory');
     }
 
     /**
@@ -151,7 +138,7 @@ class Analyser
         ];
 
         $config = Config::create()->level(FixerInterface::SYMFONY_LEVEL)->fixers($fixers);
-        $config->finder(DefaultFinder::create()->notName('*.blade.php')->in($path));
+        $config->finder(DefaultFinder::create()->notName('*.blade.php')->exclude('storage')->in($path));
         $config->setDir($path);
 
         $resolver = new ConfigurationResolver();

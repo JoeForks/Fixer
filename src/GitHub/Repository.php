@@ -83,6 +83,16 @@ class Repository
     }
 
     /**
+     * Return the repository path on the local filesystem.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return $this->path;
+    }
+
+    /**
      * Does this git repository exist on the local filesystem?
      *
      * @return bool
@@ -146,6 +156,16 @@ class Repository
     public function reset($commit)
     {
         $this->repo()->run('reset', ['--hard', $commit]);
+    }
+
+    /**
+     * Get the diff for the uncommitted modifications.
+     *
+     * @return \Gitonomy\Git\Diff\Diff
+     */
+    public function diff()
+    {
+        $this->repo()->getDiff('HEAD');
     }
 
     /**

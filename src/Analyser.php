@@ -16,6 +16,8 @@
 
 namespace GrahamCampbell\Fixer;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\Stopwatch\Stopwatch;
 use Symfony\CS\Config\Config;
 use Symfony\CS\ConfigurationResolver;
 use Symfony\CS\ErrorsManager;
@@ -23,8 +25,6 @@ use Symfony\CS\Finder\DefaultFinder;
 use Symfony\CS\Fixer;
 use Symfony\CS\FixerInterface;
 use Symfony\CS\LintManager;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * This is the analyser class.

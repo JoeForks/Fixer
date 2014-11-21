@@ -13,18 +13,14 @@
         "php": ">=5.5.0",
         "illuminate/contracts": "~5.0",
         "illuminate/support": "~5.0",
-        "graham-campbell/core": "~2.0",
         "symfony/filesystem": "~2.3",
-        "fabpot/php-cs-fixer": "1.1.*",
+        "fabpot/php-cs-fixer": "1.2.*",
         "gitonomy/gitlib": "dev-master"
     },
     "require-dev": {
         "graham-campbell/testbench": "~2.0"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-4": {
             "GrahamCampbell\\Fixer\\": "src/"
         }

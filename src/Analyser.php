@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace GrahamCampbell\Fixer\Analysers;
+namespace GrahamCampbell\Fixer;
 
 use Symfony\CS\Config\Config;
 use Symfony\CS\ConfigurationResolver;
@@ -27,13 +27,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
- * This is the code style analyser class.
+ * This is the analyser class.
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
  * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
  */
-class CodeStyle
+class Analyser
 {
     /**
      * The fixer instance.

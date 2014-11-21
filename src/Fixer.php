@@ -16,9 +16,7 @@
 
 namespace GrahamCampbell\Fixer;
 
-use GrahamCampbell\Fixer\Analysers\Analyser;
 use GrahamCampbell\Fixer\GitHub\Repository;
-use GrahamCampbell\Fixer\Models\Repo;
 
 /**
  * This is the fixer class.
@@ -32,7 +30,7 @@ class Fixer
     /**
      * The analyser instance.
      *
-     * @var \GrahamCampbell\Fixer\Analysers\Analyser
+     * @var \GrahamCampbell\Fixer\Analyser
      */
     protected $analyser;
 
@@ -53,9 +51,9 @@ class Fixer
     /**
      * Create a fixer instance.
      *
-     * @param \GrahamCampbell\Fixer\Analysers\Analyser $analyser
-     * @param string                                   $path
-     * @param array                                    $options
+     * @param \GrahamCampbell\Fixer\Analyser $analyser
+     * @param string                         $path
+     * @param array                          $options
      *
      * @return void
      */
@@ -67,25 +65,20 @@ class Fixer
     }
 
     /**
-     * Analyse the commit and save the results.
+     * Analyse the commit and return the results.
      *
      * @param string $repo
      * @param string $commit
      *
-     * @return \GrahamCampbell\Fixer\Models\Commit
+     * @return array
      */
     public function analyse($repo, $commit)
     {
         $this->setup($repo, $commit);
 
         $path = $this->path.'/'.sha1($repo);
-        $data = $this->analyser->analyse($path);
 
-        $repo = Repo::firstOrCreate(['id' => sha1($repo), 'name' => $repo]);
-        $commit = $repo->commits()->create(['id' => $commit, 'time' => $data['time'], 'memory' => $data['memory']]);
-        $commit->files()->createMany($data['files']);
-
-        return $commit;
+        return $this->analyser->analyse($path);
     }
 
     /**

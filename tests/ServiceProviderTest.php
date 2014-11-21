@@ -31,7 +31,7 @@ class ServiceProviderTest extends AbstractTestCase
 
     public function testAnalyserIsInjectable()
     {
-        $this->assertIsInjectable('GrahamCampbell\Fixer\Analysers\Analyser');
+        $this->assertIsInjectable('GrahamCampbell\Fixer\Analyser');
     }
 
     public function testFixerIsInjectable()

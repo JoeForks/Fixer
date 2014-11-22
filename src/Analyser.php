@@ -114,8 +114,10 @@ class Analyser
         $this->fixer->fix($this->getConfig($path));
         $this->stopwatch->stop('fixFiles');
 
-        $time = round($fixEvent->getDuration() / 1000, 3);
-        $memory = round($fixEvent->getMemory() / 1024 / 1024, 3);
+        $event = $this->stopwatch->getEvent('fixFiles');
+
+        $time = round($event->getDuration() / 1000, 3);
+        $memory = round($event->getMemory() / 1024 / 1024, 3);
 
         return compact('time', 'memory');
     }

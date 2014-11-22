@@ -76,7 +76,7 @@ class Fixer
     {
         $repo = $this->getRepo($repo);
 
-        $this->setup($repo);
+        $this->setup($repo, $commit);
 
         $data = $this->analyser->analyse($repo->path());
 
@@ -99,10 +99,11 @@ class Fixer
      * Set things up for analysis.
      *
      * @param \GrahamCampbell\Fixer\GitHub\Repository $repo
+     * @param string                                  $commit
      *
      * @return void
      */
-    protected function setup(Repository $repo)
+    protected function setup(Repository $repo, $commit)
     {
         if (!$repo->exists()) {
             $repo->get();

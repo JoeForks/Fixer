@@ -89,7 +89,7 @@ class Report
      *
      * @return string
      */
-    protected function diff()
+    public function diff()
     {
         return $this->diff->getRawDiff();
     }
@@ -101,6 +101,6 @@ class Report
      */
     public function files()
     {
-        $this->diff->getFiles();
+        return $this->diff->getFiles();
     }
 }

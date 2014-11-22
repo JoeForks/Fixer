@@ -165,7 +165,7 @@ class Repository
      */
     public function diff()
     {
-        $this->repo()->getDiff('HEAD');
+        return $this->repo()->getDiff('HEAD');
     }
 
     /**

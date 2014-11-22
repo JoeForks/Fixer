@@ -23,7 +23,6 @@ use Symfony\CS\ConfigurationResolver;
 use Symfony\CS\ErrorsManager;
 use Symfony\CS\Finder\DefaultFinder;
 use Symfony\CS\Fixer as CSFixer;
-use Symfony\CS\FixerInterface;
 use Symfony\CS\LintManager;
 
 /**
@@ -131,6 +130,31 @@ class Analyser
      */
     protected function getConfig($path)
     {
+        $config = $this->getConfigFromProject($path);
+
+        if (!is_object($config) || !is_a($config, Config::class)) {
+            $config = $this->getDefaultConfig($path);
+        }
+
+        $config->setDir($path);
+
+        $resolver = new ConfigurationResolver();
+        $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
+
+        $config->fixers($resolver->getFixers());
+
+        return $config;
+    }
+
+    protected function getConfigFromProject($path)
+    {
+        if (is_file($file = $path.'/.php_cs')) {
+            return include $file;
+        }
+    }
+
+    protected function getDefaultConfig($path)
+    {
         $fixers = [
             '-yoda_conditions',
             'align_double_arrow',
@@ -139,14 +163,9 @@ class Analyser
             'short_array_syntax',
         ];
 
-        $config = Config::create()->level(FixerInterface::SYMFONY_LEVEL)->fixers($fixers);
+        $config = Config::create()->fixers($fixers);
+
         $config->finder(DefaultFinder::create()->notName('*.blade.php')->exclude('storage')->in($path));
-        $config->setDir($path);
-
-        $resolver = new ConfigurationResolver();
-        $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
-
-        $config->fixers($resolver->getFixers());
 
         return $config;
     }

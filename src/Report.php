@@ -103,4 +103,34 @@ class Report
     {
         return $this->diff->getFiles();
     }
+
+    /**
+     * Was the analysis successful?
+     *
+     * @return bool
+     */
+    public function successful()
+    {
+        return empty($this->diff->getFiles());
+    }
+
+    /**
+     * Get the report summary.
+     *
+     * @return string
+     */
+    public function summary()
+    {
+        $count = count($this->diff->getFiles());
+
+        if ($count === 0) {
+            return "No files contained coding style violations."
+        }
+
+        if ($count === 1) {
+            return "1 file contained coding style violations."
+        }
+
+        return "$count files contained coding style violations."
+    }
 }

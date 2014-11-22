@@ -124,13 +124,13 @@ class Report
         $count = count($this->diff->getFiles());
 
         if ($count === 0) {
-            return "No files contained coding style violations."
+            return "No files contained coding style violations.";
         }
 
         if ($count === 1) {
-            return "1 file contained coding style violations."
+            return "1 file contained coding style violations.";
         }
 
-        return "$count files contained coding style violations."
+        return "$count files contained coding style violations.";
     }
 }

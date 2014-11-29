@@ -127,4 +127,14 @@ class Fixer
     {
         return new Report($repo->diff(), $data['time'], $data['memory']);
     }
+
+    /**
+     * Get the storage path.
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 }

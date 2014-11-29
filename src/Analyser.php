@@ -103,15 +103,14 @@ class Analyser
     /**
      * Analyse the project.
      *
-     * @param string      $path
-     * @param string|null $cache
+     * @param string $path
      *
      * @return array
      */
-    public function analyse($path, $cache = null)
+    public function analyse($path)
     {
         $this->stopwatch->start('fixFiles');
-        $this->fixer->fix($this->getConfig($path, $cache));
+        $this->fixer->fix($this->getConfig($path));
         $this->stopwatch->stop('fixFiles');
 
         $event = $this->stopwatch->getEvent('fixFiles');
@@ -125,12 +124,11 @@ class Analyser
     /**
      * Get the project configuration.
      *
-     * @param string      $path
-     * @param string|null $cache
+     * @param string $path
      *
      * @return \Symfony\CS\Config\Config
      */
-    protected function getConfig($path, $cache)
+    protected function getConfig($path)
     {
         $config = $this->getConfigFromProject($path);
 
@@ -144,13 +142,6 @@ class Analyser
         $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
 
         $config->fixers($resolver->getFixers());
-
-        if ($cache) {
-            $config->setUsingCache(true);
-            $config->setCacheDir($cache);
-        } else {
-            $config->setUsingCache(false);
-        }
 
         return $config;
     }

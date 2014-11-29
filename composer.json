@@ -9,18 +9,12 @@
             "email": "graham@mineuk.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/GrahamCampbell/php-cs-fixer"
-        }
-    ],
     "require": {
         "php": ">=5.5.0",
         "illuminate/contracts": "~5.0",
         "illuminate/support": "~5.0",
         "symfony/filesystem": "~2.3",
-        "fabpot/php-cs-fixer": "dev-cache-path",
+        "fabpot/php-cs-fixer": "1.2.*",
         "gitonomy/gitlib": "dev-master"
     },
     "require-dev": {

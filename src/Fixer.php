@@ -67,19 +67,18 @@ class Fixer
     /**
      * Analyse the commit and return the results.
      *
-     * @param string      $repo
-     * @param string      $commit
-     * @param string|null $cache
+     * @param string $repo
+     * @param string $commit
      *
      * @return array
      */
-    public function analyse($repo, $commit, $cache = null)
+    public function analyse($repo, $commit)
     {
         $repo = $this->getRepo($repo);
 
         $this->setup($repo, $commit);
 
-        $data = $this->analyser->analyse($repo->path(), $cache);
+        $data = $this->analyser->analyse($repo->path());
 
         return $this->buildReport($data, $repo);
     }

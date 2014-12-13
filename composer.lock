@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a982c5035ce353dcdc22808ca8e00fa",
+    "hash": "87ffa69044f71124564157b013d49393",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -209,16 +209,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "7aa4cff18c037935d07c27281a01fd4248a002c1"
+                "reference": "0f7876b362b6f30ba7a525eb1ddf154de8220ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/7aa4cff18c037935d07c27281a01fd4248a002c1",
-                "reference": "7aa4cff18c037935d07c27281a01fd4248a002c1",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/0f7876b362b6f30ba7a525eb1ddf154de8220ba7",
+                "reference": "0f7876b362b6f30ba7a525eb1ddf154de8220ba7",
                 "shasum": ""
             },
             "require": {
@@ -231,13 +231,16 @@
                 "symfony/process": "~2.3",
                 "symfony/stopwatch": "~2.5"
             },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
             "bin": [
                 "php-cs-fixer"
             ],
             "type": "application",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -251,12 +254,16 @@
             ],
             "authors": [
                 {
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                },
+                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
                 }
             ],
             "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2014-11-30 13:11:14"
+            "time": "2014-12-13 11:12:58"
         },
         {
             "name": "gitonomy/gitlib",

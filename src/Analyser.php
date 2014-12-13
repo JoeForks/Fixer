@@ -23,6 +23,7 @@ use Symfony\CS\ConfigurationResolver;
 use Symfony\CS\ErrorsManager;
 use Symfony\CS\Finder\DefaultFinder;
 use Symfony\CS\Fixer as CSFixer;
+use Symfony\CS\FixerInterface;
 use Symfony\CS\LintManager;
 
 /**
@@ -177,7 +178,7 @@ class Analyser
             'short_array_syntax',
         ];
 
-        $config = Config::create()->fixers($fixers);
+        $config = Config::create()->level(FixerInterface::SYMFONY_LEVEL)->fixers($fixers);
 
         $config->finder(DefaultFinder::create()->notName('*.blade.php')->exclude('storage')->in($path));
 

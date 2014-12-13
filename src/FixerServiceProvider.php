@@ -82,7 +82,7 @@ class FixerServiceProvider extends ServiceProvider
      */
     protected function registerAnalyser()
     {
-        $this->app->singleton('fixer.analyser', function ($app) {
+        $this->app->singleton('fixer.analyser', function () {
             $fixer = new SymfonyFixer();
 
             return new Analyser($fixer);

@@ -52,8 +52,8 @@ class Fixer
      * Create a fixer instance.
      *
      * @param \StyleCI\Fixer\Analyser $analyser
-     * @param string                         $path
-     * @param array                          $options
+     * @param string                  $path
+     * @param array                   $options
      *
      * @return void
      */
@@ -70,7 +70,7 @@ class Fixer
      * @param string $repo
      * @param string $commit
      *
-     * @return array
+     * @return \StyleCI\Fixer\Report
      */
     public function analyse($repo, $commit)
     {
@@ -99,7 +99,7 @@ class Fixer
      * Set things up for analysis.
      *
      * @param \StyleCI\Fixer\GitHub\Repository $repo
-     * @param string                                  $commit
+     * @param string                           $commit
      *
      * @return void
      */
@@ -117,7 +117,7 @@ class Fixer
     /**
      * Build the fixer report.
      *
-     * @param array                                   $data
+     * @param array                            $data
      * @param \StyleCI\Fixer\GitHub\Repository $repo
      *
      * @return \StyleCI\Fixer\Report

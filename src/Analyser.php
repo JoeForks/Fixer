@@ -146,6 +146,13 @@ class Analyser
         return $config;
     }
 
+    /**
+     * Get the config from the project being analysed.
+     *
+     * @param string $path
+     *
+     * @return \Symfony\CS\Config\Config
+     */
     protected function getConfigFromProject($path)
     {
         if (is_file($file = $path.'/.php_cs')) {
@@ -153,6 +160,13 @@ class Analyser
         }
     }
 
+    /**
+     * Get the default config.
+     *
+     * @param string $path
+     *
+     * @return \Symfony\CS\Config\Config
+     */
     protected function getDefaultConfig($path)
     {
         $fixers = [

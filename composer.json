@@ -1,8 +1,8 @@
 {
-    "name": "graham-campbell/fixer",
-    "description": "Fixer Is A Code Style Report Builder",
-    "keywords": ["laravel", "framework", "fixer", "cs", "api", "fixer report", "report", "Fixer", "Laravel Fixer", "Laravel-Fixer", "Graham Campbell", "GrahamCampbell"],
-    "license": "Apache-2.0",
+    "name": "styleci/fixer",
+    "description": "StyleCI Fixer Is A Code Style Report Builder",
+    "keywords": ["laravel", "framework", "fixer", "cs", "report", "StyleCI", "StyleCI", "Fixer", "Graham Campbell", "GrahamCampbell"],
+    "license": "AGPL-3.0",
     "authors": [
         {
             "name": "Graham Campbell",
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GrahamCampbell\\Fixer\\": "src/"
+            "StyleCI\\Fixer\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GrahamCampbell\\Tests\\Fixer\\": "tests/"
+            "StyleCI\\Tests\\Fixer\\": "tests/"
         }
     },
     "extra": {

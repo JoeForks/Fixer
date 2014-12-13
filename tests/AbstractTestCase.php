@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of Laravel Fixer by Graham Campbell.
+ * This file is part of StyleCI Fixer by Graham Campbell.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://bit.ly/UWsjkb.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  */
 
-namespace GrahamCampbell\Tests\Fixer;
+namespace StyleCI\Tests\Fixer;
 
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
@@ -23,7 +23,7 @@ use GrahamCampbell\TestBench\AbstractPackageTestCase;
  *
  * @author    Graham Campbell <graham@mineuk.com>
  * @copyright 2014 Graham Campbell
- * @license   <https://github.com/GrahamCampbell/Laravel-Fixer/blob/master/LICENSE.md> Apache 2.0
+ * @license   <https://github.com/StyleCI/Fixer/blob/master/LICENSE.md> AGPL 3.0
  */
 abstract class AbstractTestCase extends AbstractPackageTestCase
 {
@@ -36,6 +36,6 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
      */
     protected function getServiceProviderClass($app)
     {
-        return 'GrahamCampbell\Fixer\FixerServiceProvider';
+        return 'StyleCI\Fixer\FixerServiceProvider';
     }
 }

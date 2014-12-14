@@ -81,7 +81,6 @@ class Analyser
      * Create an analyser instance.
      *
      * @param \Symfony\CS\Fixer $fixer
-     * @param string            $path
      *
      * @return void
      */

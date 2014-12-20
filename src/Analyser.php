@@ -138,10 +138,13 @@ class Analyser
 
         $config->setDir($path);
 
+        $fixers = array_except($config->getFixers(), ['no_empty_lines_after_phpdocs']);
+        $config->fixers(array_merge($fixers, ['-no_empty_lines_after_phpdocs']));
+
         $resolver = new ConfigurationResolver();
         $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
 
-        $config->fixers(array_except($resolver->getFixers(), ['no_empty_lines_after_phpdocs']));
+        $config->fixers($resolver->getFixers());
 
         return $config;
     }

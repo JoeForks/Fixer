@@ -141,7 +141,7 @@ class Analyser
         $resolver = new ConfigurationResolver();
         $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
 
-        $config->fixers($resolver->getFixers());
+        $config->fixers(array_except($resolver->getFixers(), ['no_empty_lines_after_phpdocs']));
 
         return $config;
     }

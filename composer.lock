@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "87ffa69044f71124564157b013d49393",
+    "hash": "55dcfe7056d96a6b87e9b5dece513caa",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -89,16 +89,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.2",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "d63108433190110c0ceb8be6460dda6f78348950"
+                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d63108433190110c0ceb8be6460dda6f78348950",
-                "reference": "d63108433190110c0ceb8be6460dda6f78348950",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/eeda578cbe24a170331a1cfdf78be723412df7a4",
+                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4",
                 "shasum": ""
             },
             "require": {
@@ -153,7 +153,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-12-18 18:30:08"
+            "time": "2014-12-20 20:49:38"
         },
         {
             "name": "doctrine/lexer",
@@ -209,16 +209,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "1.4.x-dev",
+            "version": "1.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "030cd8a61ea38c5c8d75d118a870964271f03253"
+                "reference": "3d1f1e9f420b50d5e0690452fb865c6ce99f4e91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/030cd8a61ea38c5c8d75d118a870964271f03253",
-                "reference": "030cd8a61ea38c5c8d75d118a870964271f03253",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/3d1f1e9f420b50d5e0690452fb865c6ce99f4e91",
+                "reference": "3d1f1e9f420b50d5e0690452fb865c6ce99f4e91",
                 "shasum": ""
             },
             "require": {
@@ -258,7 +258,7 @@
                 }
             ],
             "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2014-12-20 13:29:12"
+            "time": "2014-12-22 16:30:52"
         },
         {
             "name": "gitonomy/gitlib",
@@ -409,12 +409,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
+                "url": "https://github.com/GrahamCampbell/framework.git",
                 "reference": "fa1ad0fa950cc30f306729b6ea851cec9ddded16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/edd48d8d92692335ad0488c3402cd2d7eb7fcf10",
+                "url": "https://api.github.com/repos/GrahamCampbell/framework/zipball/fa1ad0fa950cc30f306729b6ea851cec9ddded16",
                 "reference": "fa1ad0fa950cc30f306729b6ea851cec9ddded16",
                 "shasum": ""
             },
@@ -503,7 +503,6 @@
                     "Illuminate": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -518,7 +517,10 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-12-11 17:15:21"
+            "support": {
+                "source": "https://github.com/GrahamCampbell/framework/tree/master"
+            },
+            "time": "2014-12-04 19:32:27"
         },
         {
             "name": "league/flysystem",
@@ -526,12 +528,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "1b6c3f41b29671ca2dff32c179156ea2d26cc249"
+                "reference": "e63bbefb51e49a78a732c5a920240c6e8c08d641"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b6c3f41b29671ca2dff32c179156ea2d26cc249",
-                "reference": "1b6c3f41b29671ca2dff32c179156ea2d26cc249",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e63bbefb51e49a78a732c5a920240c6e8c08d641",
+                "reference": "e63bbefb51e49a78a732c5a920240c6e8c08d641",
                 "shasum": ""
             },
             "require": {
@@ -606,7 +608,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2014-12-16 18:08:21"
+            "time": "2014-12-22 16:32:36"
         },
         {
             "name": "monolog/monolog",
@@ -1950,16 +1952,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.2",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a"
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/95a4855380dc70176c51807c678fb3bd6198529a",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
                 "shasum": ""
             },
             "require": {
@@ -2012,19 +2014,19 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-09-03 10:11:10"
+            "time": "2014-12-22 10:06:19"
         },
         {
             "name": "orchestra/testbench",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/orchestral/testbench.git",
+                "url": "https://github.com/GrahamCampbell/testbench.git",
                 "reference": "a48283d9918791d79dc749cddc53a70979796752"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/d04c5be7db837c03fe64d2936a54f56b9d3f10f7",
+                "url": "https://api.github.com/repos/GrahamCampbell/testbench/zipball/a48283d9918791d79dc749cddc53a70979796752",
                 "reference": "a48283d9918791d79dc749cddc53a70979796752",
                 "shasum": ""
             },
@@ -2052,7 +2054,6 @@
                     "Orchestra\\Testbench\\": "src/Testbench/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2066,14 +2067,17 @@
             "description": "Laravel Package Unit Testing Helper",
             "homepage": "http://orchestraplatform.com/docs/latest/components/testbench/",
             "keywords": [
-                "BDD",
-                "TDD",
+                "bdd",
                 "laravel",
                 "orchestra-platform",
                 "orchestral",
+                "tdd",
                 "testing"
             ],
-            "time": "2014-12-09 05:51:50"
+            "support": {
+                "source": "https://github.com/GrahamCampbell/testbench/tree/master"
+            },
+            "time": "2014-12-04 02:54:12"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2765,6 +2769,7 @@
     "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.5.0"
     },

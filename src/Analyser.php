@@ -138,9 +138,6 @@ class Analyser
 
         $config->setDir($path);
 
-        $fixers = array_except($config->getFixers(), ['no_empty_lines_after_phpdocs']);
-        $config->fixers(array_merge($fixers, ['-no_empty_lines_after_phpdocs']));
-
         $resolver = new ConfigurationResolver();
         $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
 
@@ -173,7 +170,6 @@ class Analyser
     protected function getDefaultConfig($path)
     {
         $fixers = [
-            '-yoda_conditions',
             'align_double_arrow',
             'multiline_spaces_before_semicolon',
             'ordered_use',

@@ -103,7 +103,7 @@ class Repository
     }
 
     /**
-     * Clone the git repository to the local filesystem?
+     * Clone the git repository to the local filesystem.
      *
      * @return void
      */

@@ -170,6 +170,7 @@ class Analyser
     protected function getDefaultConfig($path)
     {
         $fixers = [
+            '-phpdoc_no_empty_return',
             'align_double_arrow',
             'multiline_spaces_before_semicolon',
             'ordered_use',

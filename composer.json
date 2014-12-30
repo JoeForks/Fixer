@@ -12,11 +12,15 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/GrahamCampbell/framework"
+            "url": "https://github.com/GrahamCampbell/testbench"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/GrahamCampbell/testbench"
+            "url": "https://github.com/StyleCI/framework"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StyleCI/PHP-CS-Fixer"
         }
     ],
     "require": {

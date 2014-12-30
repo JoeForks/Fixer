@@ -173,6 +173,7 @@ class Analyser
             'align_double_arrow',
             'multiline_spaces_before_semicolon',
             'ordered_use',
+            'phpdoc_order',
             'short_array_syntax',
         ];
 

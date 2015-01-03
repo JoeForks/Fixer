@@ -2,7 +2,7 @@
     "name": "styleci/fixer",
     "description": "StyleCI Fixer Is A Code Style Report Builder",
     "keywords": ["laravel", "framework", "fixer", "cs", "report", "StyleCI", "StyleCI", "Fixer", "Graham Campbell", "GrahamCampbell"],
-    "license": "AGPL-3.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Graham Campbell",

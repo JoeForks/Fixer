@@ -16,7 +16,7 @@ namespace StyleCI\Fixer\Git;
  *
  * @author Graham Campbell <graham@mineuk.com>
  */
-class RepositoryInterface
+interface RepositoryInterface
 {
     /**
      * Return the repository path on the local filesystem.

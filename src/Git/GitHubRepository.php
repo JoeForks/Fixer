@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace StyleCI\Fixer\GitHub;
+namespace StyleCI\Fixer\Git;
 
-use Exception;
 use Gitonomy\Git\Admin as Git;
 use Gitonomy\Git\Repository as GitRepo;
+use StyleCI\Fixer\Git\Exceptions\RepositoryAlreadyExistsException;
+use StyleCI\Fixer\Git\Exceptions\RepositoryDoesNotExistException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -21,7 +22,7 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * @author Graham Campbell <graham@mineuk.com>
  */
-class Repository
+class GitHubRepository implements RepositoryInterface
 {
     /**
      * The local storage path.
@@ -86,7 +87,7 @@ class Repository
     }
 
     /**
-     * Does this git repository exist on the local filesystem?
+     * Does this repository exist on the local filesystem?
      *
      * @return bool
      */
@@ -96,14 +97,17 @@ class Repository
     }
 
     /**
-     * Clone the git repository to the local filesystem.
+     * Clone the repository to the local filesystem.
+     *
+     * @throws \Gitonomy\Git\Exception\GitExceptionInterface
+     * @throws \StyleCI\Fixer\Git\Exceptions\RepositoryAlreadyExistsException
      *
      * @return void
      */
     public function get()
     {
         if ($this->exists()) {
-            throw new Exception('You cannot clone a repo that already exists on the filesystem.');
+            throw new RepositoryAlreadyExistsException();
         }
 
         $this->filesystem->mkdir($this->path);
@@ -112,7 +116,9 @@ class Repository
     }
 
     /**
-     * Get the gitlib repository instance if the local state is usable.
+     * Get the gitlib repository instance.
+     *
+     * @throws \StyleCI\Fixer\Git\Exceptions\RepositoryDoesNotExistException
      *
      * @return \Gitonomy\Git\Repository
      */
@@ -123,14 +129,16 @@ class Repository
         }
 
         if (!$this->exists()) {
-            throw new Exception('You need to clone the repo before you attempt to use it.');
+            throw new RepositoryDoesNotExistException();
         }
 
         return $this->repo = new GitRepo($this->path, $this->options);
     }
 
     /**
-     * Fetch the latest changes to our git repository from the interwebs.
+     * Fetch the latest changes to our repository from the interwebs.
+     *
+     * @throws \Gitonomy\Git\Exception\GitExceptionInterface
      *
      * @return void
      */
@@ -140,9 +148,11 @@ class Repository
     }
 
     /**
-     * Reset our local git repository to a specific commit.
+     * Reset our local repository to a specific commit.
      *
      * @param string $commit
+     *
+     * @throws \Gitonomy\Git\Exception\GitExceptionInterface
      *
      * @return void
      */

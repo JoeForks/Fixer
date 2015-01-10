@@ -11,7 +11,9 @@
 
 namespace StyleCI\Fixer;
 
-use StyleCI\Fixer\GitHub\Repository;
+use StyleCI\Fixer\Git\GitHubRepository;
+use StyleCI\Fixer\Git\PersistentRepository;
+use StyleCI\Fixer\Git\RepositoryInterface;
 
 /**
  * This is the fixer class.
@@ -81,22 +83,24 @@ class Fixer
      *
      * @param string $repo
      *
-     * @return \StyleCI\Fixer\GitHub\Repository
+     * @return \StyleCI\Fixer\Git\PersistentRepository
      */
     protected function getRepo($repo)
     {
-        return new Repository($repo, $this->path, $this->options);
+        $repository = new GitHubRepository($repo, $this->path, $this->options);
+
+        return new PersistentRepository($repository);
     }
 
     /**
      * Set things up for analysis.
      *
-     * @param \StyleCI\Fixer\GitHub\Repository $repo
-     * @param string                           $commit
+     * @param \StyleCI\Fixer\Git\RepositoryInterface $repo
+     * @param string                                 $commit
      *
      * @return void
      */
-    protected function setup(Repository $repo, $commit)
+    protected function setup(RepositoryInterface $repo, $commit)
     {
         if (!$repo->exists()) {
             $repo->get();
@@ -110,12 +114,12 @@ class Fixer
     /**
      * Build the fixer report.
      *
-     * @param array                            $data
-     * @param \StyleCI\Fixer\GitHub\Repository $repo
+     * @param array                                  $data
+     * @param \StyleCI\Fixer\Git\RepositoryInterface $repo
      *
      * @return \StyleCI\Fixer\Report
      */
-    protected function buildReport(array $data, Repository $repo)
+    protected function buildReport(array $data, RepositoryInterface $repo)
     {
         return new Report($repo->diff(), $data['time'], $data['memory']);
     }

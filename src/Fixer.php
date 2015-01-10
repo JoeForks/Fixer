@@ -11,9 +11,9 @@
 
 namespace StyleCI\Fixer;
 
-use StyleCI\Git\GitHubRepository;
-use StyleCI\Git\PersistentRepository;
-use StyleCI\Git\RepositoryInterface;
+use StyleCI\Git\Repositories\GitHubRepository;
+use StyleCI\Git\Repositories\PersistentRepository;
+use StyleCI\Git\Repositories\RepositoryInterface;
 
 /**
  * This is the fixer class.
@@ -83,7 +83,7 @@ class Fixer
      *
      * @param string $repo
      *
-     * @return \StyleCI\Git\PersistentRepository
+     * @return \StyleCI\Git\Repositories\PersistentRepository
      */
     protected function getRepo($repo)
     {
@@ -95,8 +95,8 @@ class Fixer
     /**
      * Set things up for analysis.
      *
-     * @param \StyleCI\Git\RepositoryInterface $repo
-     * @param string                           $commit
+     * @param \StyleCI\Git\Repositories\RepositoryInterface $repo
+     * @param string                                        $commit
      *
      * @return void
      */
@@ -114,8 +114,8 @@ class Fixer
     /**
      * Build the fixer report.
      *
-     * @param array                            $data
-     * @param \StyleCI\Git\RepositoryInterface $repo
+     * @param array                                         $data
+     * @param \StyleCI\Git\Repositories\RepositoryInterface $repo
      *
      * @return \StyleCI\Fixer\Report
      */

@@ -12,7 +12,7 @@
 namespace StyleCI\Fixer;
 
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\ServiceProvider;
+use Orchestra\Support\Providers\ServiceProvider;
 use Symfony\CS\Fixer as SymfonyFixer;
 
 /**
@@ -23,21 +23,12 @@ use Symfony\CS\Fixer as SymfonyFixer;
 class FixerServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
-     * Bootstrap the application events.
+     * Bootstrap the service provider.
      *
      * @return void
      */
     public function boot()
     {
-        $this->package('styleci/fixer', 'styleci/fixer', __DIR__);
-
         if ($this->app->config['graham-campbell/core::commands']) {
             $this->setupCommandSubscriber($this->app);
         }
@@ -94,9 +85,8 @@ class FixerServiceProvider extends ServiceProvider
         $this->app->singleton('fixer', function ($app) {
             $analyser = $app['fixer.analyser'];
             $path = $app['path.storage'].'/fixer';
-            $options = $app['config']['styleci/fixer::options'];
 
-            return new Fixer($analyser, $path, $options);
+            return new Fixer($analyser, $path);
         });
 
         $this->app->alias('fixer', 'StyleCI\Fixer\Fixer');

@@ -37,26 +37,17 @@ class Fixer
     protected $path;
 
     /**
-     * The gitlib options.
-     *
-     * @var array
-     */
-    protected $options;
-
-    /**
      * Create a fixer instance.
      *
      * @param \StyleCI\Fixer\Analyser $analyser
      * @param string                  $path
-     * @param array                   $options
      *
      * @return void
      */
-    public function __construct(Analyser $analyser, $path, array $options)
+    public function __construct(Analyser $analyser, $path)
     {
         $this->analyser = $analyser;
         $this->path = $path;
-        $this->options = $options;
     }
 
     /**
@@ -87,7 +78,7 @@ class Fixer
      */
     protected function getRepo($repo)
     {
-        $repository = new GitHubRepository($repo, $this->path, $this->options);
+        $repository = new GitHubRepository($repo, $this->path);
 
         return new PersistentRepository($repository);
     }

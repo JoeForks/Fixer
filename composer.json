@@ -12,18 +12,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/GrahamCampbell/html"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/GrahamCampbell/testbench"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StyleCI/framework"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/StyleCI/PHP-CS-Fixer"
         }
     ],
@@ -31,6 +19,7 @@
         "php": ">=5.5.0",
         "illuminate/contracts": "~5.0",
         "illuminate/support": "~5.0",
+        "orchestra/support-providers": "~3.0",
         "fabpot/php-cs-fixer": "1.5.*",
         "styleci/git": "0.1.*"
     },

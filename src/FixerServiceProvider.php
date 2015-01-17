@@ -29,23 +29,7 @@ class FixerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->config['graham-campbell/core::commands']) {
-            $this->setupCommandSubscriber($this->app);
-        }
-    }
-
-    /**
-     * Setup the command subscriber.
-     *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
-     * @return void
-     */
-    protected function setupCommandSubscriber(Application $app)
-    {
-        $subscriber = $app->make(Subscribers\CommandSubscriber::class);
-
-        $app['events']->subscribe($subscriber);
+        //
     }
 
     /**

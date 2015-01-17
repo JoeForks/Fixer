@@ -11,7 +11,6 @@
 
 namespace StyleCI\Fixer;
 
-use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Support\Providers\ServiceProvider;
 use Symfony\CS\Fixer as SymfonyFixer;
 

@@ -17,7 +17,7 @@ use Symfony\CS\Config\Config;
 use Symfony\CS\ConfigurationResolver;
 use Symfony\CS\ErrorsManager;
 use Symfony\CS\Finder\DefaultFinder;
-use Symfony\CS\Fixer as CSFixer;
+use Symfony\CS\Fixer;
 use Symfony\CS\FixerInterface;
 use Symfony\CS\LintManager;
 
@@ -77,7 +77,7 @@ class Analyser
      *
      * @return void
      */
-    public function __construct(CSFixer $fixer)
+    public function __construct(Fixer $fixer)
     {
         $this->fixer = $fixer;
 

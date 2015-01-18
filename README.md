@@ -30,10 +30,6 @@ Once StyleCI Fixer is installed, you need to register the service provider. Open
 
 * `'StyleCI\Fixer\FixerServiceProvider'`
 
-You can register the Fixer facade in the `aliases` key of your `config/app.php` file if you like.
-
-* `'Fixer' => 'StyleCI\Fixer\Facades\Fixer'`
-
 
 ## Configuration
 

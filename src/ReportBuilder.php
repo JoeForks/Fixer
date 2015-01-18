@@ -16,11 +16,11 @@ use StyleCI\Git\Repositories\PersistentRepository;
 use StyleCI\Git\Repositories\RepositoryInterface;
 
 /**
- * This is the fixer class.
+ * This is the report builder class.
  *
  * @author Graham Campbell <graham@mineuk.com>
  */
-class Fixer
+class ReportBuilder
 {
     /**
      * The analyser instance.
@@ -37,7 +37,7 @@ class Fixer
     protected $path;
 
     /**
-     * Create a fixer instance.
+     * Create a report builder instance.
      *
      * @param \StyleCI\Fixer\Analyser $analyser
      * @param string                  $path

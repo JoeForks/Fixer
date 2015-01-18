@@ -27,8 +27,8 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertIsInjectable('StyleCI\Fixer\Analyser');
     }
 
-    public function testFixerIsInjectable()
+    public function testReportBuilderIsInjectable()
     {
-        $this->assertIsInjectable('StyleCI\Fixer\Fixer');
+        $this->assertIsInjectable('StyleCI\Fixer\ReportBuilder');
     }
 }

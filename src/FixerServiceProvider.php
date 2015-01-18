@@ -12,7 +12,7 @@
 namespace StyleCI\Fixer;
 
 use Orchestra\Support\Providers\ServiceProvider;
-use Symfony\CS\Fixer as SymfonyFixer;
+use Symfony\CS\Fixer;
 
 /**
  * This is the fixer service provider class.
@@ -22,7 +22,7 @@ use Symfony\CS\Fixer as SymfonyFixer;
 class FixerServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the service provider.
+     * Boot the service provider.
      *
      * @return void
      */
@@ -39,7 +39,7 @@ class FixerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerAnalyser();
-        $this->registerFixer();
+        $this->registerReportBuilder();
     }
 
     /**
@@ -50,7 +50,7 @@ class FixerServiceProvider extends ServiceProvider
     protected function registerAnalyser()
     {
         $this->app->singleton('fixer.analyser', function () {
-            $fixer = new SymfonyFixer();
+            $fixer = new Fixer();
 
             return new Analyser($fixer);
         });
@@ -59,20 +59,20 @@ class FixerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the fixer class.
+     * Register the report builder class.
      *
      * @return void
      */
-    protected function registerFixer()
+    protected function registerReportBuilder()
     {
-        $this->app->singleton('fixer', function ($app) {
+        $this->app->singleton('fixer.builder', function ($app) {
             $analyser = $app['fixer.analyser'];
             $path = $app['path.storage'].'/fixer';
 
-            return new Fixer($analyser, $path);
+            return new ReportBuilder($analyser, $path);
         });
 
-        $this->app->alias('fixer', 'StyleCI\Fixer\Fixer');
+        $this->app->alias('fixer.builder', 'StyleCI\Fixer\ReportBuilder');
     }
 
     /**
@@ -83,8 +83,8 @@ class FixerServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'fixer',
             'fixer.analyser',
+            'fixer.builder',
         ];
     }
 }

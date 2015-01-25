@@ -26,14 +26,9 @@ To get the latest version of StyleCI Fixer, simply add the following line to the
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
-Once StyleCI Fixer is installed, you need to register the service provider. Open up `config/app.php` and add the following to the `providers` key.
+If you're using Laravel 5, then you can register our service provider. Open up `config/app.php` and add the following to the `providers` key.
 
 * `'StyleCI\Fixer\FixerServiceProvider'`
-
-
-## Configuration
-
-StyleCI Fixer requires no configuration. Just follow the simple install instructions and go!
 
 
 ## Usage

@@ -1,7 +1,7 @@
 StyleCI Fixer
 =============
 
-StyleCI Fixer was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a code style report builder for [Laravel 5](http://laravel.com). It utilises the [PHP Coding Standards Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/StyleCI/Fixer/releases), [license](LICENSE), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
+StyleCI Fixer was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a code style report builder. It utilises the [PHP Coding Standards Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/StyleCI/Fixer/releases), [license](LICENSE), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 
 ![StyleCI Fixer](https://cloud.githubusercontent.com/assets/2829600/5062952/c2a779c6-6dca-11e4-9fe2-24596822f7a8.PNG)
 

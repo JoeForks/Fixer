@@ -21,7 +21,7 @@
         "styleci/git": "0.1.*"
     },
     "require-dev": {
-        "graham-campbell/testbench": "dev-master"
+        "graham-campbell/testbench": "~2.0"
     },
     "suggest": {
         "illuminate/support": "Enables Laravel support (~5.0)."

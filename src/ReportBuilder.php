@@ -76,7 +76,7 @@ class ReportBuilder
      *
      * @return \StyleCI\Git\Repositories\PersistentRepository
      */
-    protected function getRepo($repo)
+    public function getRepo($repo)
     {
         $repository = new GitHubRepository($repo, $this->path);
 

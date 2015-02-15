@@ -11,8 +11,7 @@
 
 namespace StyleCI\Fixer;
 
-use StyleCI\Git\Repositories\GitHubRepository;
-use StyleCI\Git\Repositories\PersistentRepository;
+use StyleCI\Git\RepositoryFactory;
 use StyleCI\Git\Repositories\RepositoryInterface;
 
 /**
@@ -23,31 +22,31 @@ use StyleCI\Git\Repositories\RepositoryInterface;
 class ReportBuilder
 {
     /**
-     * The analyser instance.
+     * The git repository factory instance.
+     *
+     * @var \StyleCI\Git\RepositoryFactory
+     */
+    protected $factory;
+
+    /**
+     * The cs analyser instance.
      *
      * @var \StyleCI\Fixer\Analyser
      */
     protected $analyser;
 
     /**
-     * The storage path.
-     *
-     * @var string
-     */
-    protected $path;
-
-    /**
      * Create a report builder instance.
      *
-     * @param \StyleCI\Fixer\Analyser $analyser
-     * @param string                  $path
+     * @param \StyleCI\Git\RepositoryFactory $factory
+     * @param \StyleCI\Fixer\Analyser        $analyser
      *
      * @return void
      */
-    public function __construct(Analyser $analyser, $path)
+    public function __construct(RepositoryFactory $factory, Analyser $analyser)
     {
+        $this->factory = $factory;
         $this->analyser = $analyser;
-        $this->path = $path;
     }
 
     /**
@@ -60,27 +59,13 @@ class ReportBuilder
      */
     public function analyse($repo, $commit)
     {
-        $repo = $this->getRepo($repo);
+        $repo = $this->factory->make($repo);
 
         $this->setup($repo, $commit);
 
         $data = $this->analyser->analyse($repo->path());
 
         return $this->buildReport($data, $repo);
-    }
-
-    /**
-     * Get the github repo instance.
-     *
-     * @param string $repo
-     *
-     * @return \StyleCI\Git\Repositories\PersistentRepository
-     */
-    public function getRepo($repo)
-    {
-        $repository = new GitHubRepository($repo, $this->path);
-
-        return new PersistentRepository($repository);
     }
 
     /**

@@ -55,7 +55,7 @@ class FixerServiceProvider extends ServiceProvider
             return new Analyser($fixer);
         });
 
-        $this->app->alias('fixer.analyser', 'StyleCI\Fixer\Analyser');
+        $this->app->alias('fixer.analyser', Analyser::class);
     }
 
     /**
@@ -66,13 +66,13 @@ class FixerServiceProvider extends ServiceProvider
     protected function registerReportBuilder()
     {
         $this->app->singleton('fixer.builder', function ($app) {
+            $factory = $app['git.factory'];
             $analyser = $app['fixer.analyser'];
-            $path = $app['path.storage'].'/fixer';
 
-            return new ReportBuilder($analyser, $path);
+            return new ReportBuilder($factory, $analyser);
         });
 
-        $this->app->alias('fixer.builder', 'StyleCI\Fixer\ReportBuilder');
+        $this->app->alias('fixer.builder', ReportBuilder::class);
     }
 
     /**

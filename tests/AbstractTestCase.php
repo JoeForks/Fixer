@@ -21,6 +21,20 @@ use GrahamCampbell\TestBench\AbstractPackageTestCase;
 abstract class AbstractTestCase extends AbstractPackageTestCase
 {
     /**
+     * Get the required service providers.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return string[]
+     */
+    protected function getRequiredServiceProviders($app)
+    {
+        return [
+            'StyleCI\Git\GitServiceProvider',
+        ];
+    }
+
+    /**
      * Get the service provider class.
      *
      * @param \Illuminate\Contracts\Foundation\Application $app

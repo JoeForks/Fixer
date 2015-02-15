@@ -11,8 +11,8 @@
 
 namespace StyleCI\Fixer;
 
-use StyleCI\Git\RepositoryFactory;
 use StyleCI\Git\Repositories\RepositoryInterface;
+use StyleCI\Git\RepositoryFactory;
 
 /**
  * This is the report builder class.

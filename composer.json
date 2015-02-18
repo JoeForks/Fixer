@@ -9,12 +9,6 @@
             "email": "graham@mineuk.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/StyleCI/PHP-CS-Fixer"
-        }
-    ],
     "require": {
         "php": ">=5.5.0",
         "fabpot/php-cs-fixer": "1.5.*",

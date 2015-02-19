@@ -123,45 +123,6 @@ class Analyser
      */
     protected function getConfig($path)
     {
-        $config = $this->getConfigFromProject($path);
-
-        if (!is_object($config) || !is_a($config, Config::class)) {
-            $config = $this->getDefaultConfig($path);
-        }
-
-        $config->setDir($path);
-
-        $resolver = new ConfigurationResolver();
-        $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
-
-        $config->fixers($resolver->getFixers());
-
-        return $config;
-    }
-
-    /**
-     * Get the config from the project being analysed.
-     *
-     * @param string $path
-     *
-     * @return \Symfony\CS\Config\Config
-     */
-    protected function getConfigFromProject($path)
-    {
-        if (is_file($file = $path.'/.php_cs')) {
-            return include $file;
-        }
-    }
-
-    /**
-     * Get the default config.
-     *
-     * @param string $path
-     *
-     * @return \Symfony\CS\Config\Config
-     */
-    protected function getDefaultConfig($path)
-    {
         $fixers = [
             '-phpdoc_no_empty_return',
             'align_double_arrow',
@@ -174,6 +135,13 @@ class Analyser
         $config = Config::create()->level(FixerInterface::SYMFONY_LEVEL)->fixers($fixers);
 
         $config->finder(DefaultFinder::create()->notName('*.blade.php')->exclude('storage')->in($path));
+
+        $config->setDir($path);
+
+        $resolver = new ConfigurationResolver();
+        $resolver->setAllFixers($this->fixer->getFixers())->setConfig($config)->resolve();
+
+        $config->fixers($resolver->getFixers());
 
         return $config;
     }

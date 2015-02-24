@@ -1,5 +1,5 @@
-StyleCI Fixer
-=============
+# StyleCI Fixer ![Analytics](https://ga-beacon.appspot.com/UA-60053271-6/StyleCI/Fixer?pixel)
+
 
 StyleCI Fixer was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a code style report builder. It utilises the [PHP Coding Standards Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) package. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/StyleCI/Fixer/releases), [license](LICENSE), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 

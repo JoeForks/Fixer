@@ -30,6 +30,7 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
     protected function getRequiredServiceProviders($app)
     {
         return [
+            'StyleCI\Config\ConfigServiceProvider',
             'StyleCI\Git\GitServiceProvider',
         ];
     }

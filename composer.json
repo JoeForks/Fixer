@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "fabpot/php-cs-fixer": "1.5.*",
+        "fabpot/php-cs-fixer": "1.5.*,>1.5.0",
         "styleci/config": "0.1.*",
         "styleci/git": "0.1.*"
     },
